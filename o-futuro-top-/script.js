@@ -1,23 +1,12 @@
-const perguntas = [
-    {
-        enunciado: "pergunta 1",
-        alternativas: [
-            "(A)",
-            "(B)"
-        ],
-        correta: 0
-    }
-];// Seleciona os elementos HTML que serão manipulados
-const caixaPrincipal = document.querySelector(".caixa-principal");
-const caixaPerguntas = document.querySelector(".caixa-perguntas");
-const caixaAlternativas = document.querySelector(".caixa-alternativas");
-const caixaResultado = document.querySelector(".caixa-resultado");
-const textoResultado = document.querySelector(".texto-resultado");
+aconst caixaPrincipal= document.querySelector('.caixa-principal');
+cont caixaPeguntas= document.querySelector(".caixa-peguntas")
+const caixaAlternativas= document.querySelector(".caixa-alternativas");
+const caixaResultado= document.querySelector("caixa-resultado");
+const textoResultado= document.querySelector(".texto-resultado");
 
-// Array de objeto contendo as perguntas e alternativas
-const perguntas = [
-    {
-        enunciado: "Quantos litros de sangue uma pessoa tem?",
+const= perguntas {
+
+    enunciado: "Quantos litros de sangue uma pessoa tem?",
         alternativas: [
             "Tem entre 2 a 4 litros de sangue",
             "Tem entre 4 a 6 litros de sangue"
@@ -55,68 +44,40 @@ const perguntas = [
             "Dom Quixote"
         ],
         correta: 0
-    }
-];
-
-let atual = 0;
-let perguntaAtual;
-let pontuacao = 0;
-
-// FUNÇÃO MOSTRAR PERGUNTAS
-function mostrarPergunta() {
-    perguntaAtual = perguntas[atual];
-    caixaPerguntas.textContent = perguntaAtual.enunciado;
-    caixaAlternativas.innerHTML = "";
-
-    perguntaAtual.alternativas.forEach((alternativa, index) => {
-        const botao = document.createElement("button");
-        botao.textContent = alternativa; // Define o texto do botão como a alternativa
-        botao.addEventListener("click", () => verificaResposta(index));
-        caixaAlternativas.appendChild(botao);
-    });
 }
 
-// FUNÇÃO VERIFICAR RESPOSTA
-function verificaResposta(selecionada) {
-    if (selecionada === perguntaAtual.correta) {
-        pontuacao++;
+
+
+
+
+let atual = 0
+let perguntaAtual;
+let pontuação = 0
+
+function mostrarPegunta(){
+    perguntaAtual = pergunta[atual]
+    caixaPerguntas.textContent = perguntaAtual.enunciado
+    caixaAlternativas.innerHTML = perguntaAtual.enunciado
+    
+
+    perguntaAtual.alternativas.forEach (alternativas, index) => {
+        const botao = documennt.createElement("button");
+        botao.addEventListener("click"), () => verificaResposta(index);
+        caixaAlternativas.appendChild(botao);
+
+   
+    });
+
+}
+function verificaResposta(Seleciona){
+    if(selecionad == perguntaAtual.correta){
+        pontuação++;
     }
     atual++;
-
-    if (atual < perguntas.length) {
-        mostrarPergunta();
-    } else {
-        mostrarResultado();
+    if (atual < perguntas.length){
+       mostarPergunta();
+    }else {
+       mostrarResultado();
+       
     }
 }
-
-function mostrarResultado() {
-    // Esconde a caixa de perguntas
-    caixaPrincipal.style.display = "none";
-    // Mostra a caixa de resultado
-    caixaResultado.style.display = "block";
-
-    setTimeout(() => caixaResultado.classList.add("mostrar"), 10);
-    textoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
-
-    // Criar botão de reiniciar
-    const botaoReiniciar = document.createElement("button");
-    botaoReiniciar.textContent = "Reiniciar";
-
-    // Adiciona um evento de click ao botão de reiniciar
-    botaoReiniciar.addEventListener("click", () => {
-        atual = 0;
-        pontuacao = 0;
-        caixaResultado.classList.remove("mostrar");
-        caixaResultado.style.display = "none";
-        caixaPrincipal.style.display = "block";
-        mostrarPergunta();
-    });
-
-    caixaResultado.innerHTML = "";
-    caixaResultado.appendChild(textoResultado);
-    caixaResultado.appendChild(botaoReiniciar);
-}
-
-// Inicia o quiz
-mostrarPergunta();  
